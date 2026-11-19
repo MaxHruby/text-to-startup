@@ -1,0 +1,27 @@
+{
+  "app_name": "PawSwap",
+  "one_liner": "Dog owners trade walking shifts with neighbours",
+  "target_user": "Busy dog owners in the same neighbourhood",
+  "core_flow": [
+    "Owner creates a profile for their dog",
+    "Owner posts a walking shift they need covered",
+    "A neighbour claims the shift",
+    "Both see the confirmed shift on their schedule"
+  ],
+  "pages": [
+    {"route": "/", "purpose": "List of open shifts"},
+    {"route": "/shifts/new", "purpose": "Post a shift"},
+    {"route": "/me", "purpose": "My dog and my schedule"}
+  ],
+  "data_model": [
+    {"entity": "Dog", "fields": ["name", "breed", "owner_name"]},
+    {"entity": "Shift", "fields": ["dog_id", "start_time", "duration_min", "claimed_by"]}
+  ],
+  "out_of_scope": ["payments", "user accounts / login", "GPS tracking", "chat"],
+  "acceptance_tests": [
+    "GET / returns 200 and contains an <h1>",
+    "POST /shifts/new creates a shift visible on /",
+    "Claiming a shift marks it as claimed on /",
+    "GET /me returns 200"
+  ]
+}
